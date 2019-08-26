@@ -17,7 +17,15 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }
+  },
+  {
+    path: 'worker',
+    loadChildren: () => import('./worker/worker.module').then(mod => mod.WorkerModule)
+  },
+  {
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule)
+  },
 ];
 
 @NgModule({
