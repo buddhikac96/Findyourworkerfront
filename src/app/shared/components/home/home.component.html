@@ -1,61 +1,29 @@
-<div class=" blue-grey lighten-5">
+<div class=" blue-grey lighten-5 wallpaper">
 
     <!-- group search bar -->
     <div class="container pt-5 pb-2">
         <div class="input-group">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="I am looking for ...">
-            <div >
-                <div class="btn-group" mdbDropdown>
-                    <button mdbDropdownToggle type="button" mdbBtn color="primary" size="md" class="dropdown-toggle z-depth-0" mdbWavesEffect></button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </div>
-            </div>
+            <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ...">
+    
+            <span class="date-label"> </span>
+            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="   On" class="form-control form-control-lg input-border">
+            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+
+            <span class="time-label"></span>
+            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="   At" class="form-control form-control-lg input-border">
+            <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
         </div>
     </div>
 
-    <!-- date and time inputs -->
-    <div class="container pb-5">
+
+
+    <div class="container pb-5 pt-5">
         <div class="row">
-
-            <!-- date -->
-            <!-- <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4 clearfix">
-                        <label for="datepicker" class="float-right">Date</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Date" id="datepicker">
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- time -->
-           <!--  <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4 d-flex">
-                        <label for="timepicker" class="float-right">Time</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Time" id="timepicker">
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </div>
-
-    <div class="container pb-5">
-        <div class="row">
-            <div class="col-md-6 clearfix">
-                <button class="btn btn-primary float-right">Book Now</button>
+            <div class="col-md-6">
+                <button class="btn btn-primary float-right" size="lg">Book Now</button>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-primary">Book Later</button>
+                <button class="btn btn-primary" size="lg">Book Later</button>
             </div>
         </div>
     </div>
