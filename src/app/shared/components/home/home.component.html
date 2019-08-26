@@ -3,24 +3,28 @@
     <!-- group search bar -->
     <div class="container pt-5 pb-2">
         <div class="input-group">
-            <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ...">
+            <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ..."
+                list="jobs" [(ngModel)] = "job"
+            >
+
+            <datalist id="jobs">
+                <option *ngFor="let job of jobs">{{job}}</option>
+            </datalist>
     
             <span class="date-label"> </span>
-            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="   On" class="form-control form-control-lg input-border">
+            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="   On" class="form-control form-control-lg input-border" [(ngModel)] = "date">
             <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
 
             <span class="time-label"></span>
-            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="   At" class="form-control form-control-lg input-border">
+            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="   At" class="form-control form-control-lg input-border" [(ngModel)] = "time">
             <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
         </div>
     </div>
 
-
-
     <div class="container pb-5 pt-5">
         <div class="row">
             <div class="col-md-6">
-                <button class="btn btn-primary float-right" size="lg">Book Now</button>
+                <button class="btn btn-primary float-right" size="lg" (click)="booknow()">Book Now</button>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-primary" size="lg">Book Later</button>

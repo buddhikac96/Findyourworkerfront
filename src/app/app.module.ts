@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -16,7 +16,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from './shared/components/register/register.component';
 
 
-@NgModule({
+@ NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -31,7 +31,8 @@ import { RegisterComponent } from './shared/components/register/register.compone
     FormsModule,
     AppRoutingModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
