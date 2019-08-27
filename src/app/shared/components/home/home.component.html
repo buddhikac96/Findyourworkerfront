@@ -24,10 +24,10 @@
     <div class="container pb-5 pt-5">
         <div class="row">
             <div class="col-md-6">
-                <button class="btn btn-primary float-right" size="lg" (click)="booknow()">Book Now</button>
+                <app-booknow class="float-right" [jobType]='jobType' [baseLocation]='baseLocation'></app-booknow>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-primary" size="lg">Book Later</button>
+                <app-booklater></app-booklater>
             </div>
         </div>
     </div>

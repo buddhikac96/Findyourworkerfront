@@ -14,6 +14,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from './shared/components/register/register.component';
+import { BooknowComponent } from './shared/components/home/booknow/booknow.component';
+import { BooklaterComponent } from './shared/components/home/booklater/booklater.component';
 
 
 @ NgModule({
@@ -22,7 +24,9 @@ import { RegisterComponent } from './shared/components/register/register.compone
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BooknowComponent,
+    BooklaterComponent
   ],
   imports: [
     BrowserModule,

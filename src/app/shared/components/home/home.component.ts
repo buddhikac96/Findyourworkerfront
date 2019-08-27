@@ -11,9 +11,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   jobs: string[] = ['plumber', 'mechanic', 'driver'];
-  job: string;
+  jobType: string;
   date: string;
   time: string;
+  baseLocation = 'Moratuwa';
 
   ngOnInit() {
   }
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   booknow() {
     console.log('booknow');
-    console.log(this .job);
+    console.log(this .jobType);
     console.log(this .date);
     console.log(this .time);
 
