@@ -1,4 +1,4 @@
-import { SkillModel } from './../models/skill.model';
+import { SkillModelRes } from './../models/skill.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ export class DataService {
   ) { }
 
   getAllJobs() {
-    return this.http.get<SkillModel>('http://localhost:3000/dataservices/getallskills');
+    return this.http.get<SkillModelRes>('http://localhost:3000/dataservices/getallskills');
   }
 
 }

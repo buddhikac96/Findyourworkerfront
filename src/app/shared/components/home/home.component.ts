@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  jobs: SkillModel;
+  jobs: SkillModel[];
   jobType: string;
   date: string;
   time: string;
