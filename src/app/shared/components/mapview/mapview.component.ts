@@ -16,7 +16,7 @@ export class MapviewComponent implements OnInit {
   baseLocation: string;
   private sub: any;
 
-  url = '../../../../assets/img/icon-labour.png';
+  url = '../../../../assets/img/icon-labour.png'; 
 
   constructor(
     private mapService: MapserviceService,
