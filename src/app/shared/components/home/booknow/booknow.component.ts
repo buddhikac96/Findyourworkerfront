@@ -31,6 +31,7 @@ export class BooknowComponent implements OnInit {
       });
     } else {
       this.router.navigate(['mapview', {location: this.baseLocation, jobType: this.jobTypeId}]);
+      console.log('');
     }
   }
 
