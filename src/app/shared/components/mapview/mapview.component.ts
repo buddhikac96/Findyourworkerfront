@@ -1,7 +1,7 @@
 import { RealTimeWorkerLocation } from './../../models/locatoin.model';
 import { Component, OnInit } from '@angular/core';
 import { MapserviceService } from '../../services/mapservice.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -16,11 +16,12 @@ export class MapviewComponent implements OnInit {
   baseLocation: string;
   private sub: any;
 
-  url = '../../../../assets/img/icon-labour.png'; 
+  url = '../../../../assets/img/icon-labour.png';
 
   constructor(
     private mapService: MapserviceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -38,6 +39,10 @@ export class MapviewComponent implements OnInit {
         }
       );
     });
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
   }
 
 }

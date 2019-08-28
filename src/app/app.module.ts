@@ -17,6 +17,7 @@ import { BooknowComponent } from './shared/components/home/booknow/booknow.compo
 import { BooklaterComponent } from './shared/components/home/booklater/booklater.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MapviewComponent } from './shared/components/mapview/mapview.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @ NgModule({
@@ -42,7 +43,8 @@ import { MapviewComponent } from './shared/components/mapview/mapview.component'
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB8lgLyWZZBgmCV6EAVADrIanxU03jXfWc'
-    })
+    }),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

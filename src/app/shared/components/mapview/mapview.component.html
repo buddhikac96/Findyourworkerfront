@@ -1,18 +1,23 @@
-<div class="container mt-5">
-    <agm-map class="agm-map" [latitude]="7.8731" [longitude]="80.7718">
-        <agm-marker *ngFor="let worker of realTimeWorekrs" [latitude]="worker.Latitude" [longitude]="worker.Longitude" [iconUrl]="url">
+<div class="back-color pt-5">
+    <div class="container animated fadein">
+        <agm-map class="agm-map" [latitude]="7.8731" [longitude]="80.7718">
+            <agm-marker *ngFor="let worker of realTimeWorekrs" [latitude]="worker.Latitude" [longitude]="worker.Longitude" [iconUrl]="url">
+                <agm-info-window [disableAutoPan]=false [isOpen]=false>
+                    <strong>
+                        <b> Name - {{worker.FirstName}}
+                            <br> Rating - {{worker.Rate}}
+                            <br> Charge - {{worker.HourlyCharge}}
+                            <br> </b>
+                    </strong>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
+    </div>
 
-            <agm-info-window [disableAutoPan]=false [isOpen]=false>
-                <strong>
-                    <b> Name - {{worker.FirstName}}
-                        <br> Rating - {{worker.Rate}}
-                        <br> Charge - {{worker.HourlyCharge}}
-                        <br> </b>
-                </strong>
-            </agm-info-window>
-        </agm-marker>
+    <div class="container mt-5 text-center">
+        <div class="row text-center" style="display: inline">
+            <button class="btn btn-lg btn-warning" (click)="navigateToLogin()">Log in to Book a Worker</button>
+        </div>
+    </div>
 
-
-
-    </agm-map>
 </div>

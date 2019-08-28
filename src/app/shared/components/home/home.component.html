@@ -2,12 +2,17 @@
 
     <!-- group search bar -->
     <div class="container pt-5 pb-2">
+
+        <div class="pb-3 pr-3 pl-3 pt-3" style="background-color: darkgoldenrod">
+
         <div class="input-group">
             <input type="text" 
             class="form-control form-control-lg input-border" 
             aria-label="Text input with dropdown button" 
             placeholder="I am looking for ..."
             list="jobs" [(ngModel)] = "jobType" (change)="setjobIdPassToBooking()">
+
+            <div class="ml-1"></div>
 
             <datalist id="jobs">
                 <option *ngFor="let job of jobs">{{job.SkillTitle}}</option>
@@ -17,10 +22,17 @@
             <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="   On" class="form-control form-control-lg input-border" [(ngModel)] = "date">
             <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
 
+
+            <div class="ml-1"></div>
+
             <span class="time-label"></span>
             <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="   At" class="form-control form-control-lg input-border" [(ngModel)] = "time">
             <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
         </div>
+
+    </div>
+
+
     </div>
 
     <div class="container pb-5 pt-5">
