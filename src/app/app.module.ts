@@ -16,6 +16,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from './shared/components/register/register.component';
 import { BooknowComponent } from './shared/components/home/booknow/booknow.component';
 import { BooklaterComponent } from './shared/components/home/booklater/booklater.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @ NgModule({
@@ -36,7 +37,8 @@ import { BooklaterComponent } from './shared/components/home/booklater/booklater
     AppRoutingModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

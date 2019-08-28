@@ -4,11 +4,11 @@
     <div class="container pt-5 pb-2">
         <div class="input-group">
             <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ..."
-                list="jobs" [(ngModel)] = "job"
+                list="jobs" [(ngModel)] = "jobType"
             >
 
             <datalist id="jobs">
-                <option *ngFor="let job of jobs">{{job}}</option>
+                <option *ngFor="let job of jobs">{{job.SkillTitle}}</option>
             </datalist>
     
             <span class="date-label"> </span>

@@ -1,4 +1,6 @@
+import { SkillModel } from './../../models/skill.model';
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @ Component({
   selector: 'app-home',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(
+    private dataservice: DataService
+  ) {
+    this.dataservice.getAllJobs().subscribe(
+      res => {
+        console.log(res.recordset);
+        this.jobs = res.recordset;
+      }
+    );
+  }
 
-  jobs: string[] = ['plumber', 'mechanic', 'driver'];
+  jobs: SkillModel;
   jobType: string;
   date: string;
   time: string;
@@ -35,4 +46,5 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
 }
