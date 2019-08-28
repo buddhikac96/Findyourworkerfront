@@ -1,5 +1,5 @@
 export interface SkillModel {
-    SkillId: string;
+    SkillId: number;
     SkillTitle: string;
 }
 

@@ -1,3 +1,4 @@
+import { MapviewComponent } from './shared/components/mapview/mapview.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,13 +20,17 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'mapview',
+    component: MapviewComponent
+  },
+  {
     path: 'worker',
     loadChildren: () => import('./worker/worker.module').then(mod => mod.WorkerModule)
   },
   {
     path: 'client',
     loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule)
-  },
+  }
 ];
 
 @NgModule({

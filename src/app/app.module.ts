@@ -1,14 +1,13 @@
-
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './shared/components/home/home.component';
@@ -17,6 +16,7 @@ import { RegisterComponent } from './shared/components/register/register.compone
 import { BooknowComponent } from './shared/components/home/booknow/booknow.component';
 import { BooklaterComponent } from './shared/components/home/booklater/booklater.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MapviewComponent } from './shared/components/mapview/mapview.component';
 
 
 @ NgModule({
@@ -27,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     BooknowComponent,
-    BooklaterComponent
+    BooklaterComponent,
+    MapviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB8lgLyWZZBgmCV6EAVADrIanxU03jXfWc'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

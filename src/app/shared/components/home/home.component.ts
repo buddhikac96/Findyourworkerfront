@@ -23,28 +23,21 @@ export class HomeComponent implements OnInit {
 
   jobs: SkillModel[];
   jobType: string;
+  jobIdPassToBooking: number;
   date: string;
   time: string;
-  baseLocation = 'Moratuwa';
+  baseLocation = 'moratuwa';
 
   ngOnInit() {
   }
 
-  printlocation(location) {
-    console.log(location);
-  }
-
-  booknow() {
-    console.log('booknow');
-    console.log(this .jobType);
-    console.log(this .date);
-    console.log(this .time);
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((location) => {
-        this .printlocation(location);
-      });
+  setjobIdPassToBooking() {
+    for (const skill of this.jobs) {
+      if (skill.SkillTitle === this.jobType) {
+        this.jobIdPassToBooking = skill.SkillId;
+      }
     }
+    console.log(this.jobIdPassToBooking);
   }
 
 }

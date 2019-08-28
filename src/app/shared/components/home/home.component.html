@@ -3,9 +3,11 @@
     <!-- group search bar -->
     <div class="container pt-5 pb-2">
         <div class="input-group">
-            <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ..."
-                list="jobs" [(ngModel)] = "jobType"
-            >
+            <input type="text" 
+            class="form-control form-control-lg input-border" 
+            aria-label="Text input with dropdown button" 
+            placeholder="I am looking for ..."
+            list="jobs" [(ngModel)] = "jobType" (change)="setjobIdPassToBooking()">
 
             <datalist id="jobs">
                 <option *ngFor="let job of jobs">{{job.SkillTitle}}</option>
@@ -24,7 +26,7 @@
     <div class="container pb-5 pt-5">
         <div class="row">
             <div class="col-md-6">
-                <app-booknow class="float-right" [jobType]='jobType' [baseLocation]='baseLocation'></app-booknow>
+                <app-booknow class="float-right" [jobTypeId]='jobIdPassToBooking' [baseLocation]='baseLocation'></app-booknow>
             </div>
             <div class="col-md-6">
                 <app-booklater></app-booklater>

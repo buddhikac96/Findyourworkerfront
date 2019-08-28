@@ -1,4 +1,6 @@
+import { MapserviceService } from './../../../services/mapservice.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @ Component({
   selector: 'app-booknow',
@@ -8,16 +10,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BooknowComponent implements OnInit {
 
   @ Input() baseLocation: string;
-  @ Input() jobType: string;
+  @ Input() jobTypeId: string;
 
-  constructor() { }
+  constructor(
+    private mapService: MapserviceService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   onclickBookNow() {
-    console.log(this .baseLocation);
-    console.log(this .jobType);
+    this.router.navigate(['mapview', {location: this.baseLocation, jobType: this.jobTypeId}]);
   }
 
 }
