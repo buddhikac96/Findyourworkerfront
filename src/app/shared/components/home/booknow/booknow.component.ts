@@ -1,4 +1,3 @@
-import { MapserviceService } from './../../../services/mapservice.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -15,7 +14,6 @@ export class BooknowComponent implements OnInit {
   @ Input() jobTypeId: string;
 
   constructor(
-    private mapService: MapserviceService,
     private router: Router,
     private toastr: ToastrService
   ) { }

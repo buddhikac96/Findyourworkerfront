@@ -1,8 +1,9 @@
-import { RealTimeWorkerLocation, RealTimeWorkerLocationArray } from './../models/locatoin.model';
+import { ServerResponse } from './../models/response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from '../../../../node_modules/rxjs';
 
-@Injectable({
+@ Injectable({
   providedIn: 'root'
 })
 export class MapserviceService {
@@ -12,10 +13,9 @@ export class MapserviceService {
   ) { }
 
 
-  getNearbyWorkers(jobType, baseLocation) {
-    return this.http.post<RealTimeWorkerLocationArray>(
-      'http://localhost:3000/booknow/booknow',
-      {'jobType' : jobType, 'baseLocation' : baseLocation}
+  getNearbyWorkers(jobType, baseLocation): Observable<ServerResponse> {
+    return this.http.post<ServerResponse>(
+      'http://localhost:3000/booknow/booknow', {jobType,  baseLocation}
     );
   }
 }

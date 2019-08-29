@@ -10,3 +10,9 @@ export interface RealTimeWorkerLocation {
 export interface RealTimeWorkerLocationArray {
     recordset: Array<RealTimeWorkerLocation>;
 }
+
+
+export interface LocationPoint {
+    latitude: string;
+    longitude: string;
+}

@@ -1,9 +1,7 @@
-import { RealTimeWorkerLocation } from './../../models/locatoin.model';
+import { RealTimeWorkerLocation, LocationPoint } from './../../models/locatoin.model';
 import { Component, OnInit } from '@angular/core';
 import { MapserviceService } from '../../services/mapservice.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-mapview',
@@ -15,6 +13,11 @@ export class MapviewComponent implements OnInit {
   jobTypeId: number;
   baseLocation: string;
   private sub: any;
+
+  centerOfMap: LocationPoint;
+
+  lat;
+  lng;
 
   url = '../../../../assets/img/icon-labour.png';
 
@@ -34,8 +37,10 @@ export class MapviewComponent implements OnInit {
       this.baseLocation = params['location'];
       this.mapService.getNearbyWorkers(this.jobTypeId, this.baseLocation).subscribe(
         res => {
-          this.realTimeWorekrs = res.recordset;
-          console.log(this.realTimeWorekrs);
+          this.realTimeWorekrs = res.result.workers;
+          this.lat = res.result.centerOfMap.latitude;
+          this.lng = res.result.centerOfMap.longitude;
+          console.log(res);
         }
       );
     });

@@ -1,6 +1,6 @@
 <div class="back-color pt-5">
     <div class="container animated fadein">
-        <agm-map class="agm-map" [latitude]="7.8731" [longitude]="80.7718">
+        <agm-map class="agm-map" [latitude]="lat" [longitude]="lng">
             <agm-marker *ngFor="let worker of realTimeWorekrs" [latitude]="worker.Latitude" [longitude]="worker.Longitude" [iconUrl]="url">
                 <agm-info-window [disableAutoPan]=false [isOpen]=false>
                     <strong>
