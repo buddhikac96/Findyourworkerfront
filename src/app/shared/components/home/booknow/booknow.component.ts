@@ -28,6 +28,7 @@ export class BooknowComponent implements OnInit {
         positionClass: 'toast-top-right',
       });
     } else {
+      localStorage.setItem('jobTypeId', this.jobTypeId);
       this.router.navigate(['mapview', {location: this.baseLocation, jobType: this.jobTypeId}]);
       console.log('');
     }

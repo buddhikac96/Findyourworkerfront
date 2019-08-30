@@ -12,6 +12,7 @@ export class MapviewComponent implements OnInit {
 
   jobTypeId: number;
   baseLocation: string;
+  clientId: number;
   private sub: any;
 
   centerOfMap: LocationPoint;
@@ -48,6 +49,14 @@ export class MapviewComponent implements OnInit {
 
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  sendRequest() {
+    this.mapService.sendUrgentRequest(this.jobTypeId, this.clientId, this.realTimeWorekrs).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
   }
 
 }

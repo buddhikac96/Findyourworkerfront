@@ -18,4 +18,10 @@ export class MapserviceService {
       'http://localhost:3000/booknow/booknow', {jobType,  baseLocation}
     );
   }
+
+  sendUrgentRequest(jobTypeId, clientId, workers): Observable<ServerResponse> {
+    return this.http.post<ServerResponse>(
+      'http://localhost:3000/booknow/sendUrgentRequest', {jobTypeId, clientId, workers}
+    );
+  }
 }
