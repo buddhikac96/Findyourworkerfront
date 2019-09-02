@@ -42,10 +42,11 @@ export class RegisterComponent implements OnInit {
   }
 
   registerSubmit(form) {
-    this.userService.registerUser(this.form.username, this.form.password, this.form.contactNumber, this.form.userType).subscribe(
+    console.log(form.value.username);
+    this.userService.registerUser(form.value.username, form.value.password, form.value.contactNumber, form.value.userType).subscribe(
       result => {
         console.log(result);
-        if (result.status === 200) {
+        if (result.status === 201) {
           this.toastr.success('User Registerd Succesfully');
           this.router.navigate(['login']);
         } else {
@@ -65,6 +66,10 @@ export class RegisterComponent implements OnInit {
 
   get confirmPassword() {
     return this.form.get('confirmPassword');
+  }
+
+  get contactNumber() {
+    return this.form.get('contactNumber');
   }
 
 }

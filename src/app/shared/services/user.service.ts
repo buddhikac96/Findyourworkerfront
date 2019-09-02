@@ -16,7 +16,12 @@ export class UserService {
     return this.http.post<LoginResponse>('http://localhost:3000/user/login', {UserEmail: username, Password: password});
   }
 
-  registerUser(UserEmail, Password, ContactNumber, UserType): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>('http://localhost:3000/user/register', {UserEmail, Password, ContactNumber, UserType});
+  registerUser(username, password, mobile, type): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>('http://localhost:3000/user/register', {
+      UserEmail: username,
+      Password: password,
+      ContactNumber: mobile,
+      UserType : type
+    });
   }
 }
