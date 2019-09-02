@@ -1,3 +1,5 @@
+import { LoginComponent } from './../login/login.component';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isLogged: boolean;
+
+  constructor(  ) { }
 
   ngOnInit() {
+    if (localStorage.getItem('sessionEmail') === null) {
+      this.isLogged = false;
+    } else {
+      this.isLogged = true;
+    }
+
+    console.log(this.isLogged);
   }
 
 }

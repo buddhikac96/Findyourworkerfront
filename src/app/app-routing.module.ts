@@ -1,3 +1,4 @@
+import { HeaderComponent } from './shared/components/header/header.component';
 import { MapviewComponent } from './shared/components/mapview/mapview.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'client',
     loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule)
+  },
+  {
+    path: 'refreshHeader',
+    component: HeaderComponent
   }
 ];
 

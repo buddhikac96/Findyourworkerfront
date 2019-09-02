@@ -6,7 +6,7 @@
                 <span class="text-warning"> Worker</span>
             </b>
         </a>
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row" *ngIf="!isLogged">
             <a routerLink="/login">
                 <button class="btn btn-outline-warning waves-effect mr-2">Login</button>
             </a>

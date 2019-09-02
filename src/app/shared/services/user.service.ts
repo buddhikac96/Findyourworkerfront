@@ -1,14 +1,14 @@
 import { LoginResponse, RegisterResponse } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from '../../../../node_modules/rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(
+    constructor(
     private http: HttpClient
   ) { }
 
@@ -24,4 +24,5 @@ export class UserService {
       UserType : type
     });
   }
+
 }

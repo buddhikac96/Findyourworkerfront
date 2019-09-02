@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
     this .form = this .fb .group({
       username: ['', [
@@ -38,9 +39,10 @@ export class LoginComponent implements OnInit {
           if (result.result.sessionType === 'worker') {
             this.router.navigate(['worker']);
           } else {
-            this.router.navigate(['client']);
+            this.router.navigate(['']);
           }
         } else {
+          this.form.reset();
           this.toastr.error('Login Failed');
         }
       }
@@ -52,5 +54,6 @@ export class LoginComponent implements OnInit {
 
   get username() {return this.form.get('username'); }
   get password() {return this.form.get('password'); }
+
 
 }
