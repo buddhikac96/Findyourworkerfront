@@ -1,4 +1,4 @@
-import { LoginComponent } from './../login/login.component';
+import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,16 +11,31 @@ export class HeaderComponent implements OnInit {
 
   isLogged: boolean;
 
-  constructor(  ) { }
+  constructor(
+    private userservice: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('sessionEmail') === null) {
+    if (this.userservice.isLogged() === 'null') {
       this.isLogged = false;
     } else {
       this.isLogged = true;
     }
+  }
 
-    console.log(this.isLogged);
+  navigateToProfile() {
+    if (this.userservice.getUserType() === 'worker') {
+      this.router.navigate(['worker']);
+    } else {
+      this.router.navigate(['client']);
+    }
+  }
+
+  logout() {
+    this.userservice.logout();
+    localStorage.removeItem('sessionEmail');
+    localStorage.removeItem('sessinType');
   }
 
 }

@@ -16,8 +16,8 @@
 
     <div class="container mt-5 text-center">
         <div class="row text-center" style="display: inline">
-            <button class="btn btn-lg btn-warning" (click)="navigateToLogin()" *ngIf = "logged">Log in to Book a Worker</button>
-            <button class="btn btn-lg btn-warning" (click)="sendRequest()" *ngIf = "!logged">Send Requests</button>
+            <button class="btn btn-lg btn-warning" (click)="navigateToLogin()" *ngIf = "!isLogged">Log in to Book a Worker</button>
+            <button class="btn btn-lg btn-warning" (click)="sendRequest()" *ngIf = "isLogged">Send Requests</button>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 import { LoginResponse, RegisterResponse } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,18 @@ export class UserService {
       ContactNumber: mobile,
       UserType : type
     });
+  }
+
+  logout() {
+    return this.http.post('http://localhost:3000/user/logout', {});
+  }
+
+  isLogged() {
+    return localStorage.getItem('sessionEmail');
+  }
+
+  getUserType() {
+    return localStorage.getItem('sessionType');
   }
 
 }

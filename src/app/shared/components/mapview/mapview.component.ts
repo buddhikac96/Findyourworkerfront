@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { RealTimeWorkerLocation, LocationPoint } from './../../models/locatoin.model';
 import { Component, OnInit } from '@angular/core';
 import { MapserviceService } from '../../services/mapservice.service';
@@ -20,12 +21,15 @@ export class MapviewComponent implements OnInit {
   lat;
   lng;
 
+  isLogged;
+
   url = '../../../../assets/img/icon-labour.png';
 
   constructor(
     private mapService: MapserviceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
   }
 
@@ -45,6 +49,12 @@ export class MapviewComponent implements OnInit {
         }
       );
     });
+
+    if (this.userService.isLogged() === 'null') {
+      this.isLogged = false;
+    } else {
+      this.isLogged = true;
+    }
   }
 
   navigateToLogin() {

@@ -14,5 +14,17 @@
                 <button class="btn btn-outline-warning waves-effect">SignUp</button>
             </a>
         </div>
+
+
+        <div class="d-flex flex-row" *ngIf="isLogged">
+            <a (click)="navigateToProfile()">
+                <button class="btn btn-outline-warning waves-effect mr-2">Profile</button>
+            </a>
+            <a (click)="logout()">
+                <button class="btn btn-outline-warning waves-effect">Logout</button>
+            </a>
+        </div>
+
+
     </div>
 </nav>

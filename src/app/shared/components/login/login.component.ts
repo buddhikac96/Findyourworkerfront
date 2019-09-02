@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
-    private location: Location
   ) {
     this .form = this .fb .group({
       username: ['', [
