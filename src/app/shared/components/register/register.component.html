@@ -3,75 +3,74 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
 
-
             <!-- Default form register -->
-            <form class="text-center border border-light p-5">
+            <form class="text-center border border-light p-5" [formGroup]="form" (ngSubmit)="registerSubmit(form)">
 
                 <p class="h4 mb-4">Sign up</p>
 
-                <div class="form-row mb-4">
-                    <div class="col">
-                        <!-- First name -->
-                        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
-                    </div>
-                    <div class="col">
-                        <!-- Last name -->
-                        <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
-                    </div>
-                </div>
-
                 <!-- E-mail -->
-                <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+                <input type="email" class="form-control mb-4" placeholder="E-mail"  formControlName="username">
+
+                <!-- email validator message -->
+                <div *ngIf="username.touched && username.invalid">
+                    <div *ngIf="username.errors.required">
+                      <small class="invalidInput">Email is required</small>
+                    </div>
+                    <div *ngIf="username.errors.email">
+                      <small class="invalidInput">Please input correct email type</small>
+                    </div>
+                    <br>
+                  </div>
 
                 <!-- Password -->
-                <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                    At least 8 characters and 1 digit
-                </small>
+                <input type="password" class="form-control mb-4" placeholder="Password" formControlName="password">
+
+                  <!-- password validator message -->
+                <div *ngIf="password.touched && password.invalid">
+                    <div *ngIf="password.errors.minlength">
+                      <small class="invalidInput">Password must be longer than 8 letters</small>
+                    </div>
+                    <div *ngIf="password.errors.required">
+                      <small class="invalidInput">Please enter a password</small>
+                    </div>
+                    <br>
+                  </div>
+
+                <input type="password" class="form-control mb-4" placeholder="Confirm Password" formControlName="confirmPassword">
+
+                  <!-- confirm password validator message -->
+                <small class="invalidInput" *ngIf="confirmPassword.touched && confirmPassword?.errors ||
+                confirmPassword.touched && confirmPassword.errors?.mismatch">
+                  Password doesn't match
+                  <br>
+              </small>
 
                 <!-- Phone number -->
-                <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-                <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                    Optional - for two-step authentication
-                </small>
+                <input type="text" class="form-control mb-4" placeholder="Phone number"  formControlName="contactNumber">
 
-                <!-- Newsletter -->
-                <div class="row">
-                    <div class="col-md-6 mx-auto d-flex justify-content-center">
-                        <mdb-checkbox [default]="true">Subscribe to our newsletter</mdb-checkbox>
+                <!-- user type selection radio buttons -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input"  mdbInput formControlName="userType" value="worker" id="workerradio">
+                                <label class="custom-control-label" for="workerradio">I'm a Worker</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" mdbInput formControlName="userType" value="client" id="clientradio">
+                                <label class="custom-control-label" for="clientradio">I'm a Client</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Sign up button -->
                 <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
 
-                <!-- Social register -->
-                <p>or sign up with:</p>
-
-                <a type="button" class="light-blue-text mx-2">
-                    <mdb-icon fab icon="facebook"></mdb-icon>
-                </a>
-                <a type="button" class="light-blue-text mx-2">
-                    <mdb-icon fab icon="twitter"></mdb-icon>
-                </a>
-                <a type="button" class="light-blue-text mx-2">
-                    <mdb-icon fab icon="linkedin"></mdb-icon>
-                </a>
-                <a type="button" class="light-blue-text mx-2">
-                    <mdb-icon fab icon="github"></mdb-icon>
-                </a>
-
                 <hr>
-
-                <!-- Terms of service -->
-                <p>By clicking
-                    <em>Sign up</em> you agree to our
-                    <a href="" target="_blank">terms of service</a>
-                </p>
-
             </form>
-            <!-- Default form register -->
-
 
         </div>
         <div class="col-md-3"></div>
