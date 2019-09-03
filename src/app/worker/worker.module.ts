@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RequestsComponent } from './dashboard/requests/requests.component';
 import { MyjobsComponent } from './dashboard/myjobs/myjobs.component';
 import { FabComponent } from './dashboard/fab/fab.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FabComponent } from './dashboard/fab/fab.component';
     DashboardComponent,
     RequestsComponent,
     MyjobsComponent,
-    FabComponent
+    FabComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

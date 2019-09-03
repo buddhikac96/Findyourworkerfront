@@ -1,3 +1,4 @@
+import { WorkerService } from './../../../shared/services/worker.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor() { }
+  myRequets: any[];
+
+  constructor(
+    private worrkerService: WorkerService
+  ) { }
 
   ngOnInit() {
+    this.worrkerService.getAllRequests(localStorage.getItem('UserId')).subscribe(
+      res => {
+        console.log(res);
+        this.myRequets = res.result;
+      }
+    );
   }
 
 }
