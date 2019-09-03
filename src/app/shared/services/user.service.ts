@@ -30,7 +30,10 @@ export class UserService {
   }
 
   isLogged() {
-    return localStorage.getItem('sessionEmail');
+    if (localStorage.getItem('sessionEmail') === null) {
+      return false;
+    }
+    return true;
   }
 
   getUserType() {

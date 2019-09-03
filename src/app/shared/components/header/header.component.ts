@@ -17,11 +17,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userservice.isLogged() === 'null') {
-      this.isLogged = false;
-    } else {
-      this.isLogged = true;
-    }
+    this.isLogged = this.userservice.isLogged();
+    console.log(this.isLogged);
   }
 
   navigateToProfile() {
@@ -35,7 +32,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userservice.logout();
     localStorage.removeItem('sessionEmail');
-    localStorage.removeItem('sessinType');
+    localStorage.removeItem('sessionType');
   }
 
 }

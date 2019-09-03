@@ -21,7 +21,7 @@ export class MapviewComponent implements OnInit {
   lat;
   lng;
 
-  isLogged;
+  isLogged: boolean;
 
   url = '../../../../assets/img/icon-labour.png';
 
@@ -50,11 +50,7 @@ export class MapviewComponent implements OnInit {
       );
     });
 
-    if (this.userService.isLogged() === 'null') {
-      this.isLogged = false;
-    } else {
-      this.isLogged = true;
-    }
+    this.isLogged = this.userService.isLogged();
   }
 
   navigateToLogin() {

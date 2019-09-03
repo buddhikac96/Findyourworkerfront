@@ -1,12 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WorkertesthomeComponent } from './workertesthome/workertesthome.component';
 
+import { RequestsComponent } from './dashboard/requests/requests.component';
+import { MyjobsComponent } from './dashboard/myjobs/myjobs.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: WorkertesthomeComponent
+        redirectTo: 'dashboard'
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        children : [
+            {
+                path: 'requests',
+                component: RequestsComponent
+            },
+            {
+                path: 'myjobs',
+                component: MyjobsComponent
+            }
+        ]
     }
 ];
 

@@ -19,15 +19,21 @@
             </datalist>
     
             <span class="date-label"> </span>
-            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="   On" class="form-control form-control-lg input-border" [(ngModel)] = "date">
+            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="  On" class="form-control form-control-lg input-border" [(ngModel)] = "date">
             <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
 
 
             <div class="ml-1"></div>
 
             <span class="time-label"></span>
-            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="   At" class="form-control form-control-lg input-border" [(ngModel)] = "time">
+            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder=" Start Time" class="form-control form-control-lg input-border" [(ngModel)] = "time">
             <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
+
+            <div class="ml-1"></div>
+
+            <span class="time-label"></span>
+            <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder=" End Time" class="form-control form-control-lg input-border" [(ngModel)] = "time">
+            <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
         </div>
 
     </div>
