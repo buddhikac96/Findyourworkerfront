@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FloatingActionButton } from '../../../../node_modules/ng2-floating-action-menu';
 
@@ -15,21 +16,21 @@ export class DashboardComponent implements OnInit {
       iconClass: 'fas fa-briefcase',
       label: 'My Jobs',
       onClick: () => {
-
+        this.router.navigate(['worker/dashboard/myjobs']);
       }
     },
     {
       iconClass: 'fas fa-business-time',
       label: 'Requests',
       onClick: () => {
-
+        this.router.navigate(['worker/dashboard/requests']);
       }
     },
     {
       iconClass: 'fas fa-user-circle',
       label: 'Profile',
       onClick: () => {
-
+        this.router.navigate(['worker/dashboard/profile']);
       }
     },
   ];
@@ -77,7 +78,9 @@ export class DashboardComponent implements OnInit {
     'hover'
   ];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     this.config = {
       placment: 'br',
       effect: 'mfb-zoomin',

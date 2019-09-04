@@ -1,5 +1,21 @@
-<div class="container mt-5">
-    <div *ngFor="let req of myRequets" class="container">
-        
-    </div>
+<div class="container pt-5">
+    <table class="table">
+        <thead class="black white-text">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Request Id</th>
+                <th scope="col">View Request</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let req of myRequets;  let i = index" [attr.data-index]="i">
+                <th scope="row">{{i}}</th>
+                <td>{{req.RequestId}}</td>
+                <td>
+                    <app-requestcard [reqId]="req.RequestId"></app-requestcard>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+
 </div>

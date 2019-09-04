@@ -37,11 +37,13 @@ export class ProfileComponent implements OnInit {
     });
 
     this.editProfileForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      phoneNumber: [''],
-      location: ['']
+      firstName: [this.workerProfile.firstName],
+      lastName: [this.workerProfile.lastName],
+      phoneNumber: [this.workerProfile.ContactNumber],
+      location: [this.workerProfile.BaseLocation]
     });
+
+
   }
 
   ngOnInit() {
@@ -68,7 +70,6 @@ export class ProfileComponent implements OnInit {
         this.locations = res.recordset;
       }
     );
-
   }
 
   onAddSkill() {
@@ -114,6 +115,7 @@ export class ProfileComponent implements OnInit {
     this.workerService.editWorkerProfile(userId, profileData).subscribe(
       res => {
         console.log(res);
+        this.ngOnInit();
       }
     );
   }

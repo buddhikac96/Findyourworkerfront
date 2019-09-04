@@ -11,6 +11,7 @@ import { RequestsComponent } from './dashboard/requests/requests.component';
 import { MyjobsComponent } from './dashboard/myjobs/myjobs.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { SkillComponent } from './dashboard/profile/skill/skill.component';
+import { RequestcardComponent } from './dashboard/requests/requestcard/requestcard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SkillComponent } from './dashboard/profile/skill/skill.component';
     RequestsComponent,
     MyjobsComponent,
     ProfileComponent,
-    SkillComponent
+    SkillComponent,
+    RequestcardComponent
   ],
   imports: [
     CommonModule,
