@@ -1,0 +1,13 @@
+<mdb-card>
+    <mdb-card-body>
+        <mdb-card-title class="text-left">
+            <h4>{{skill}}</h4>
+        </mdb-card-title>
+        <hr>
+        <mdb-card-text class="text-left"> Some quick example text to build on the card title and make up the bulk of the card's content.
+        </mdb-card-text>
+        <a mdbBtn color="primary" mdbWavesEffect class="btn btn-sm"> <span><strong>Hourly Charge - </strong></span>  <strong> {{rate}} </strong>  </a>
+        <a mdbBtn color="red" mdbWavesEffect  (click)="deleteSkill(skillId)" class="btn btn-sm" > <i class="fas fa-trash-alt"></i> Delete</a>
+        <a mdbBtn color="info" mdbWavesEffect  (click)="edit(skillId)" class="btn btn-sm"> <i class="fas fa-edit"></i> Edit </a>
+    </mdb-card-body>
+</mdb-card>

@@ -16,6 +16,15 @@ export class WorkerService {
   }
 
   getProfile(UserId): Observable<any> {
-    return this.http.get('http://localhost:3000/worker/profile/' + UserId);
+    return this.http.get<any>('http://localhost:3000/worker/profile/' + UserId);
+  }
+
+  addWorkerSkill(id, skillObj): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/worker/skill/' + id, {skillObj});
+  }
+
+  deleteWorkerSkill(id, skid): Observable<any> {
+    console.log(id, skid);
+    return this.http.request<any>('delete', 'http://localhost:3000/worker/skill/' + id, {body : { skillId : skid }});
   }
 }

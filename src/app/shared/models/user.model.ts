@@ -14,7 +14,7 @@ export interface RegisterResponse {
     message: string;
 }
 
-export interface WorkerProfile {
+export class WorkerProfile {
     FirstName: string;
     LastName: string;
     BaseLocation: string;
@@ -23,8 +23,9 @@ export interface WorkerProfile {
     status: boolean;
 }
 
-export interface WorkerSkill {
+export class WorkerSkill {
     SkillTitle: string;
     HourlyCharge: string;
     Description: string;
+    SkillId: number;
 }

@@ -40,4 +40,8 @@ export class UserService {
     return localStorage.getItem('sessionType');
   }
 
+  getUserId() {
+    return localStorage.getItem('UserId');
+  }
+
 }

@@ -1,45 +1,103 @@
 <div class="container mt-5">
     <div class="row justify-content-between">
-        <div class="col-md-6">
+        <div class="col-md-6 border pt-2 pb-2" style="height: 100%;">
             <div class="row justify-content-around">
-                <div class="profilePic"></div>
+                <!-- <div class="profilePic"></div> -->
+                <img class="profilePic" src="data:image/jpeg;base64,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"
+                    alt="">
             </div>
             <div class="row justify-content-around mt-2">
-                <h3>{{user.FirstName}} {{user.LastName}}</h3>
+                <h3>
+                    <strong> {{workerProfile.FirstName}} {{workerProfile.LastName}} </strong>
+                </h3>
             </div>
             <div class="row justify-content-center mt-2">
                 <div class="col-md-4">
-                    Email - 
+                    <strong> Email - </strong>
                 </div>
                 <div class="col-md-4">
-                    {{userEmail}}
-                </div>
-            </div>
-            <div class="row justify-content-center mt-2">
-                <div class="col-md-4">
-                    Contact Number - 
-                </div>
-                <div class="col-md-4">
-                    {{user.ContactNumber}}
+                    <strong> {{userEmail}} </strong>
                 </div>
             </div>
             <div class="row justify-content-center mt-2">
                 <div class="col-md-4">
-                    Location - 
+                    <strong> Contact Number - </strong>
                 </div>
                 <div class="col-md-4">
-                    {{user.BaseLocation}}
+                    <strong> {{workerProfile.ContactNumber}} </strong>
                 </div>
+            </div>
+            <div class="row justify-content-center mt-2">
+                <div class="col-md-4">
+                    <strong> Location - </strong>
+                </div>
+                <div class="col-md-4">
+                    <strong> {{workerProfile.BaseLocation}} </strong>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <button class="btn btn-sm btn-info"> <i class="fas fa-edit"></i>Edit Profile</button>
             </div>
         </div>
-        <div class="col-md-5 mt-5">
-            <div class="row justify-content-around">
-                <h2>Add Skills</h2>
+
+
+
+
+        <div class="col-md-5 m2-5 text-center">
+            <div class="row justify-content-start">
+                <h2>
+                    <strong>My Skills</strong>
+                </h2>
             </div>
-            <div class="row">
+            <br>
+            <div class="row justify-content-around" *ngFor="let skill of workerSkills">
+                <app-worker-skill [skill]="skill.SkillTitle" [description]="skill.Description" [rate]="skill.HourlyCharge" [skillId]="skill.SkillId"></app-worker-skill>
+                <hr>
+            </div>
+            <div class="row justify-content-around">
+                <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+                    mdbWavesEffect>Add Skill</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                
 
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add Skill</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form [formGroup]="addSkillForm">
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <!-- select job -->
+                        <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="Select a skill ..."
+                            list="jobs" formControlName="skill" (change)="setjobIdPassToBooking()" [(ngModel)]="jobType">
+                        <div class="ml-1"></div>
+                        <datalist id="jobs">
+                            <option *ngFor="let job of sysSkills">{{job.SkillTitle}}</option>
+                        </datalist>
+                    </div>
+                    <!-- description -->
+                    <div class="md-form mb-4">
+                        <textarea cols="50" rows="5" formControlName="desc" id="skilldesc" placeholder="description"></textarea>
+                    </div>
+                    <!-- rate -->
+                    <div class="md-form mb-4">
+                        <input type="text" id="defaultForm-pass" formControlName="rate" class="form-control" mdbInput mdbValidate>
+                        <label for="defaultForm-pass">Hourly Charge</label>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="onAddSkill()" (click)="frame.hide()">Add</button>
             </div>
         </div>
     </div>
