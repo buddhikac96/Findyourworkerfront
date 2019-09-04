@@ -118,32 +118,32 @@
             </div>
             <div class="modal-body mx-3">
                 <!-- form from here -->
-                <form class="text-center  p-2" action="#!">
+                <form class="text-center  p-2" [formGroup]="editProfileForm" (ngSubmit)="onSubmitEditProfile()">
                     <div class="form-row mb-4">
                         <div class="col">
                             <!-- First name -->
-                            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+                            <input type="text" formControlName="firstName" class="form-control" placeholder="First name">
                         </div>
                         <div class="col">
                             <!-- Last name -->
-                            <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+                            <input type="text" formControlName="lastName" class="form-control" placeholder="Last name">
                         </div>
                     </div>
                     <!-- Phone number -->
-                    <input type="text" id="defaultRegisterPhonePassword" class="form-control mb-4" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+                    <input type="text" formControlName="phoneNumber" class="form-control mb-4" placeholder="Phone number">
                     
                     
-                    <!-- <input type="text" 
-                    class="form-control form-control-lg input-border" 
+                    <input type="text" 
+                    class="form-control form-control-md input-border" 
                     aria-label="Text input with dropdown button" 
                     placeholder="Select Location"
-                    list="locations" [(ngModel)] = "location" (change)="setLocationToEdit()">
+                    list="locations" formControlName='location'>
         
                     <div class="ml-1"></div>
         
                     <datalist id="locations">
-                        <option *ngFor="let location of locations">{{job.SkillTitle}}</option>
-                    </datalist> -->
+                        <option *ngFor="let location of locations">{{location.DivisionalSecretary}}</option>
+                    </datalist>
                     
                     
                     <!-- Sign up button -->

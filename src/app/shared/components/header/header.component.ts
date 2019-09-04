@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
       }
     );
 
+    if (this.userservice.isLogged()) {
+      this.userservice.headerStateChange.next(true);
+    }
+
   }
 
   navigateToProfile() {
@@ -40,6 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigate(['']);
     this.userservice.logout();
     localStorage.removeItem('sessionEmail');
     localStorage.removeItem('sessionType');

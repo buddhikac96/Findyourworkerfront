@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
   addSkillForm;
   jobType: string;
   jobIdPassToBooking: number;
-  setLocationToEdit: string;
   locations: string[];
+  editProfileForm;
 
   constructor(
     private workerService: WorkerService,
@@ -34,6 +34,13 @@ export class ProfileComponent implements OnInit {
       skill: [''],
       desc: [''],
       rate: ['']
+    });
+
+    this.editProfileForm = this.fb.group({
+      firstName: [''],
+      lastName: [''],
+      phoneNumber: [''],
+      location: ['']
     });
   }
 
@@ -52,6 +59,13 @@ export class ProfileComponent implements OnInit {
       res => {
         console.log(res);
         this.sysSkills = res.recordset;
+      }
+    );
+
+    this.dataService.getAllLocations().subscribe(
+      res => {
+        console.log(res);
+        this.locations = res.recordset;
       }
     );
 
@@ -75,7 +89,7 @@ export class ProfileComponent implements OnInit {
     this.workerService.addWorkerSkill(id, skill).subscribe(
       res => {
         console.log(res);
-        this.workerSkills.push(res.newSkill);
+        this.workerSkills.push(newSkill);
       }
     );
   }
@@ -89,4 +103,18 @@ export class ProfileComponent implements OnInit {
     console.log(this.jobIdPassToBooking);
   }
 
+  onSubmitEditProfile() {
+    const userId = this.userService.getUserId();
+    const profileData = {
+      firstName: this.editProfileForm.value.firstName,
+      lastName: this.editProfileForm.value.lastName,
+      phoneNumber: this.editProfileForm.value.phoneNumber,
+      location: this.editProfileForm.value.location
+    };
+    this.workerService.editWorkerProfile(userId, profileData).subscribe(
+      res => {
+        console.log(res);
+      }
+    );
+  }
 }

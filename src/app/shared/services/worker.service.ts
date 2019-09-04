@@ -27,4 +27,14 @@ export class WorkerService {
     console.log(id, skid);
     return this.http.request<any>('delete', 'http://localhost:3000/worker/skill/' + id, {body : { skillId : skid }});
   }
+
+  editWorkerProfile(id, profileData): Observable<any> {
+    console.log(profileData);
+    return this.http.put<any>('http://localhost:3000/worker/profile/' + id, {
+      fname: profileData.firstName,
+      lname: profileData.lastName,
+      baseL: profileData.location,
+      contactno: profileData.phoneNumber
+    });
+  }
 }
