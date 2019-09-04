@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   addSkillForm;
   jobType: string;
   jobIdPassToBooking: number;
+  setLocationToEdit: string;
+  locations: string[];
 
   constructor(
     private workerService: WorkerService,
@@ -52,6 +54,7 @@ export class ProfileComponent implements OnInit {
         this.sysSkills = res.recordset;
       }
     );
+
   }
 
   onAddSkill() {

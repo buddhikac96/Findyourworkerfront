@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('sessionEmail', result.result.sessionEmail);
           localStorage.setItem('sessionType', result.result.sessionType);
           localStorage.setItem('UserId', result.result.UserId);
+
+          this.userService.headerStateChange.next(true);
+
           if (result.result.sessionType === 'worker') {
             this.router.navigate(['worker']);
           } else {

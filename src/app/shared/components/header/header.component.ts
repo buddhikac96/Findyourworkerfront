@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean;
+  subscription: Subscription;
+  message: string;
 
   constructor(
     private userservice: UserService,
@@ -17,8 +20,15 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLogged = this.userservice.isLogged();
-    console.log(this.isLogged);
+    // this.isLogged = this.userservice.isLogged();
+    // console.log(this.isLogged);
+
+    this.userservice.headerStateChange.subscribe(
+      res => {
+        this.isLogged = res;
+      }
+    );
+
   }
 
   navigateToProfile() {
@@ -33,6 +43,7 @@ export class HeaderComponent implements OnInit {
     this.userservice.logout();
     localStorage.removeItem('sessionEmail');
     localStorage.removeItem('sessionType');
+    this.userservice.headerStateChange.next(false);
   }
 
 }

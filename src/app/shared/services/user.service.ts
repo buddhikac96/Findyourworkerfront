@@ -1,12 +1,14 @@
 import { LoginResponse, RegisterResponse } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  public headerStateChange = new Subject<boolean>();
 
     constructor(
     private http: HttpClient
@@ -43,5 +45,6 @@ export class UserService {
   getUserId() {
     return localStorage.getItem('UserId');
   }
+
 
 }
