@@ -13,15 +13,15 @@ export class MapserviceService {
   ) { }
 
 
-  getNearbyWorkers(jobType, baseLocation): Observable<ServerResponse> {
+  getNearbyWorkers(jobType, clientId, cordinate): Observable<ServerResponse> {
     return this.http.post<ServerResponse>(
-      'http://localhost:3000/booknow/booknow', {jobType,  baseLocation}
+      'http://localhost:3000/booknow/booknow', {jobType, clientId, cordinate}
     );
   }
 
-  sendUrgentRequest(jobTypeId, clientId, workers): Observable<ServerResponse> {
+  sendUrgentRequest(jobTypeId, clientId, workers, location): Observable<ServerResponse> {
     return this.http.post<ServerResponse>(
-      'http://localhost:3000/booknow/sendUrgentRequest', {jobTypeId, clientId, workers}
+      'http://localhost:3000/booknow/sendUrgentRequest', {jobTypeId, clientId, workers, location}
     );
   }
 }

@@ -41,4 +41,8 @@ export class WorkerService {
   getRequestDetails(reqId): Observable<any> {
     return this.http.get<any>('http://localhost:3000/requests/show/' + reqId);
   }
+
+  getClientNameOfRequest(id): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/dataservices/getclientdetails/' + id);
+  }
 }

@@ -14,7 +14,7 @@ export class DataService {
     private http: HttpClient
   ) { }
 
-  getAllJobs() {
+  getAllJobs(): Observable<any> {
     return this.http.get<SkillModelRes>('http://localhost:3000/dataservices/getallskills');
   }
 
@@ -22,4 +22,7 @@ export class DataService {
     return this.http.get<any>('http://localhost:3000/dataservices/getalllocations');
   }
 
+  getClientDetailsById(id): Observable<any> {
+    return this.http.get('http://localhost:3000/dataservices/getclientdetails/' + id);
+  }
 }

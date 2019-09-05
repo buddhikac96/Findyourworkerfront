@@ -17,6 +17,7 @@ export class MapviewComponent implements OnInit {
   private sub: any;
 
   centerOfMap: LocationPoint;
+  userCordinate: any;
 
   lat;
   lng;
@@ -35,17 +36,25 @@ export class MapviewComponent implements OnInit {
 
   realTimeWorekrs: RealTimeWorkerLocation[];
 
+  public getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.userCordinate = position;
+      console.log(position);
+    });
+  }
+
   ngOnInit() {
+    this.getPosition();
     this.sub = this.route.params.subscribe(params => {
       /* tslint:disable:no-string-literal */
       this.jobTypeId = +params['jobType'];
-      this.baseLocation = params['location'];
-      this.mapService.getNearbyWorkers(this.jobTypeId, this.baseLocation).subscribe(
+      const clientId = this.userService.getUserId();
+      this.mapService.getNearbyWorkers(this.jobTypeId, clientId, this.userCordinate).subscribe(
         res => {
           this.realTimeWorekrs = res.result.workers;
           this.lat = res.result.centerOfMap.latitude;
           this.lng = res.result.centerOfMap.longitude;
-          console.log(res);
+          console.log(this.realTimeWorekrs);
         }
       );
     });
@@ -58,7 +67,12 @@ export class MapviewComponent implements OnInit {
   }
 
   sendRequest() {
-    this.mapService.sendUrgentRequest(this.jobTypeId, this.clientId, this.realTimeWorekrs).subscribe(
+    const availableWorkerIdList = [];
+    const location = '6.7881,79.8913';
+    for (const worker of this.realTimeWorekrs) {
+      availableWorkerIdList.push(worker.WorkerId);
+    }
+    this.mapService.sendUrgentRequest(this.jobTypeId, this.clientId, availableWorkerIdList, location).subscribe(
       res => {
         console.log(res);
       }

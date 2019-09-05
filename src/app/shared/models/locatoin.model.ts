@@ -12,7 +12,7 @@ export interface RealTimeWorkerLocationArray {
 }
 
 
-export interface LocationPoint {
+export class LocationPoint {
     latitude: string;
     longitude: string;
 }
