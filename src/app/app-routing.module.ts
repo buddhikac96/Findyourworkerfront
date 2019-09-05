@@ -1,3 +1,5 @@
+import { ClientAuthGuardService } from './shared/services/client-auth-guard.service';
+import { WorkerAuthGuardService } from './shared/services/worker-auth-guard.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MapviewComponent } from './shared/components/mapview/mapview.component';
 import { HomeComponent } from './shared/components/home/home.component';
@@ -26,11 +28,13 @@ const routes: Routes = [
   },
   {
     path: 'worker',
-    loadChildren: () => import('./worker/worker.module').then(mod => mod.WorkerModule)
+    loadChildren: () => import('./worker/worker.module').then(mod => mod.WorkerModule),
+    canActivate: [WorkerAuthGuardService]
   },
   {
     path: 'client',
-    loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule)
+    loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule),
+    canActivate: [ClientAuthGuardService]
   },
   {
     path: 'refreshHeader',

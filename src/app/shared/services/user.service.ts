@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginResponse, RegisterResponse } from './../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,12 +11,13 @@ export class UserService {
 
   public headerStateChange = new Subject<boolean>();
 
-    constructor(
-    private http: HttpClient
+  constructor(
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   loginUser(username, password): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('http://localhost:3000/user/login', {UserEmail: username, Password: password});
+    return this.http.post<LoginResponse>('http://localhost:3000/user/login', { UserEmail: username, Password: password });
   }
 
   registerUser(username, password, mobile, type): Observable<RegisterResponse> {
@@ -23,11 +25,12 @@ export class UserService {
       UserEmail: username,
       Password: password,
       ContactNumber: mobile,
-      UserType : type
+      UserType: type
     });
   }
 
   logout() {
+    this.router.navigate(['']);
     return this.http.post('http://localhost:3000/user/logout', {});
   }
 
