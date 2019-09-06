@@ -15,8 +15,8 @@ export interface RegisterResponse {
 }
 
 export class WorkerProfile {
-    firstName: string;
-    lastName: string;
+    FirstName: string;
+    LastName: string;
     BaseLocation: string;
     ContactNumber: string;
     ImgUrl: string;
