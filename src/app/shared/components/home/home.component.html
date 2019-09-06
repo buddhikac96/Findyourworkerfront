@@ -1,47 +1,54 @@
-<div class=" blue-grey lighten-5 wallpaper">
+<div class=" blue-grey lighten-5 wallpaper animated fadeIn">
 
     <!-- group search bar -->
-    <div class="container pt-5 pb-2">
+    <div class="container pt-5 pb-2 animated slideInDown">
 
         <div class="pb-3 pr-3 pl-3 pt-3" style="background-color: darkgoldenrod">
 
-        <div class="input-group">
-            <input type="text" 
-            class="form-control form-control-lg input-border" 
-            aria-label="Text input with dropdown button" 
-            placeholder="I am looking for ..."
-            list="jobs" [(ngModel)] = "jobType" (change)="setjobIdPassToBooking()">
+            <div class="input-group">
+                <input type="text" class="form-control form-control-lg input-border" aria-label="Text input with dropdown button" placeholder="I am looking for ..."
+                    list="jobs" [(ngModel)]="jobType" (change)="setjobIdPassToBooking()">
 
-            <div class="ml-1"></div>
+                <div class="ml-1"></div>
 
-            <datalist id="jobs">
-                <option *ngFor="let job of jobs">{{job.SkillTitle}}</option>
-            </datalist>
-    
-            <span class="date-label"> </span>
-            <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="  On" class="form-control form-control-lg input-border" [(ngModel)] = "date">
-            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                <datalist id="jobs">
+                    <option *ngFor="let job of jobs">{{job.SkillTitle}}</option>
+                </datalist>
+
+                <span class="date-label"> </span>
+                <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="  On" class="form-control form-control-lg input-border"
+                    [(ngModel)]="date">
+                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
 
 
-            <div class="ml-1"></div>
+                <div class="ml-1"></div>
 
-            <span class="time-label"></span>
-            <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder=" Start Time" class="form-control form-control-lg input-border" [(ngModel)] = "time">
-            <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
+                <span class="time-label"></span>
+                <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder=" Start Time" class="form-control form-control-lg input-border"
+                    [(ngModel)]="time">
+                <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
 
-            <div class="ml-1"></div>
+                <div class="ml-1"></div>
 
-            <span class="time-label"></span>
-            <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder=" End Time" class="form-control form-control-lg input-border" [(ngModel)] = "time">
-            <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+                <span class="time-label"></span>
+                <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder=" End Time" class="form-control form-control-lg input-border"
+                    [(ngModel)]="time">
+                <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+
+
+                <div class="ml-2"></div>
+
+                <span class="time-label"></span>
+                <input type="image" src="../../../../assets/img/location.png" (click)="basicModal.show()" class="button-locatoin animated bounce">
+                <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+            </div>
+
         </div>
 
-    </div>
-
 
     </div>
 
-    <div class="container pb-5 pt-5">
+    <div class="container pb-5 pt-5 animated slideInUp">
         <div class="row">
             <div class="col-md-6">
                 <app-booknow class="float-right" [jobTypeId]='jobIdPassToBooking' [baseLocation]='baseLocation'></app-booknow>
@@ -52,4 +59,26 @@
         </div>
     </div>
 
+</div>
+
+
+
+
+
+
+<!-- ============================ client map modal ========================== -->
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <agm-map [latitude]="latitude" [longitude]="longitute" class="agm-map" [zoom]=12 (mapClick)="mapClick($event)">
+                    <agm-marker [latitude]="clientLat" [longitude]="clientLng"></agm-marker>
+                </agm-map>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light btn-sm" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Set My Locatoin</button>
+            </div>
+        </div>
+    </div>
 </div>

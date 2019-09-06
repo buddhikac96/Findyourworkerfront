@@ -1,3 +1,4 @@
+import { ClientAuthRouteMappingService } from './shared/services/client-auth-route-mapping.service';
 import { ClientAuthGuardService } from './shared/services/client-auth-guard.service';
 import { WorkerAuthGuardService } from './shared/services/worker-auth-guard.service';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -12,7 +13,8 @@ import { RegisterComponent } from './shared/components/register/register.compone
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [ClientAuthRouteMappingService]
   },
   {
     path: 'login',

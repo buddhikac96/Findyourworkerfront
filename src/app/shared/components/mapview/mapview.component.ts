@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../services/user.service';
 import { RealTimeWorkerLocation, LocationPoint } from './../../models/locatoin.model';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +31,8 @@ export class MapviewComponent implements OnInit {
     private mapService: MapserviceService,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -44,17 +46,35 @@ export class MapviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    let clientCordinate = '';
+
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        cordinate => {
+          clientCordinate = '' + cordinate.coords.latitude + cordinate.coords.longitude;
+          console.log(clientCordinate);
+        }
+      );
+    }
+
     this.getPosition();
     this.sub = this.route.params.subscribe(params => {
       /* tslint:disable:no-string-literal */
       this.jobTypeId = +params['jobType'];
       const clientId = this.userService.getUserId();
-      this.mapService.getNearbyWorkers(this.jobTypeId, clientId, this.userCordinate).subscribe(
+      const location = localStorage.getItem('location');
+      this.mapService.getNearbyWorkers(this.jobTypeId, clientId, location).subscribe(
         res => {
           this.realTimeWorekrs = res.result.workers;
           this.lat = res.result.centerOfMap.latitude;
           this.lng = res.result.centerOfMap.longitude;
           console.log(this.realTimeWorekrs);
+          localStorage.removeItem('location');
+          if (res.status === 201) {
+            this.toastr.success(res.message);
+          } else {
+            this.toastr.warning(res.message);
+          }
         }
       );
     });
@@ -74,7 +94,10 @@ export class MapviewComponent implements OnInit {
     }
     this.mapService.sendUrgentRequest(this.jobTypeId, this.clientId, availableWorkerIdList, location).subscribe(
       res => {
-        console.log(res);
+       if (res.message === 'success') {
+        this.toastr.success('Request sent Succesfully');
+        this.router.navigate(['']);
+       }
       }
     );
   }

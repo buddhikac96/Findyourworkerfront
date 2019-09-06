@@ -1,7 +1,7 @@
 <div class="back-color pt-5">
     <div class="container animated fadein">
-        <agm-map class="agm-map" [latitude]="lat" [longitude]="lng">
-            <agm-marker *ngFor="let worker of realTimeWorekrs" [latitude]="worker.Latitude" [longitude]="worker.Longitude" [iconUrl]="url">
+        <agm-map class="agm-map" [latitude]="lat" [longitude]="lng" [zoom]="9">
+            <agm-marker *ngFor="let worker of realTimeWorekrs" [latitude]="worker.Latitude" [longitude]="worker.Longitude" [iconUrl]="url" [animation]="'BOUNCE'">
                 <agm-info-window [disableAutoPan]=false [isOpen]=false>
                     <strong>
                         <b> Name - {{worker.FirstName}}
@@ -20,5 +20,4 @@
             <button class="btn btn-lg btn-warning" (click)="sendRequest()" *ngIf = "isLogged">Send Requests</button>
         </div>
     </div>
-
 </div>

@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
     this.userservice.logout();
     localStorage.removeItem('sessionEmail');
     localStorage.removeItem('sessionType');
+    localStorage.removeItem('UserId');
     this.userservice.headerStateChange.next(false);
   }
 

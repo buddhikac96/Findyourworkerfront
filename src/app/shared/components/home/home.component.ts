@@ -9,6 +9,18 @@ import { DataService } from '../../services/data.service';
 })
 export class HomeComponent implements OnInit {
 
+  jobs: SkillModel[];
+  jobType: string;
+  jobIdPassToBooking: number;
+  date: string;
+  time: string;
+  baseLocation = 'moratuwa';
+  latitude = 6.9061;
+  longitute = 79.9696;
+  clientLat;
+  clientLng;
+
+
 
   constructor(
     private dataservice: DataService
@@ -21,13 +33,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  jobs: SkillModel[];
-  jobType: string;
-  jobIdPassToBooking: number;
-  date: string;
-  time: string;
-  baseLocation = 'moratuwa';
-
   ngOnInit() {
   }
 
@@ -38,6 +43,14 @@ export class HomeComponent implements OnInit {
       }
     }
     console.log(this.jobIdPassToBooking);
+  }
+
+  mapClick(event) {
+    const coords = event.coords;
+    const location = '' + coords.lat + ',' + coords.lng;
+    this.clientLat = coords.lat;
+    this.clientLng = coords.lng;
+    localStorage.setItem('location', location);
   }
 
 }
