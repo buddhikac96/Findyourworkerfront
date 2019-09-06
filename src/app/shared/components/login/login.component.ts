@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '../../../../../node_modules/@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @ Component({
   selector: 'app-login',
