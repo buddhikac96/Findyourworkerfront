@@ -37,8 +37,8 @@ export class ProfileComponent implements OnInit {
     });
 
     this.editProfileForm = this.fb.group({
-      firstName: [this.workerProfile.firstName],
-      lastName: [this.workerProfile.lastName],
+      firstName: [this.workerProfile.FirstName],
+      lastName: [this.workerProfile.LastName],
       phoneNumber: [this.workerProfile.ContactNumber],
       location: [this.workerProfile.BaseLocation]
     });
