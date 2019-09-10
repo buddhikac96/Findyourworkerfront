@@ -68,7 +68,7 @@ export class MapviewComponent implements OnInit {
           this.realTimeWorekrs = res.result.workers;
           this.lat = res.result.centerOfMap.latitude;
           this.lng = res.result.centerOfMap.longitude;
-          console.log(this.realTimeWorekrs);
+          console.log(res);
           localStorage.removeItem('location');
           if (res.status === 201) {
             this.toastr.success(res.message);

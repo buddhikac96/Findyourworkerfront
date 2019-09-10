@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean;
-  subscription: Subscription;
   message: string;
 
   constructor(

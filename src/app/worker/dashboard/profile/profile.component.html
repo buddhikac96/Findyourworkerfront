@@ -52,7 +52,12 @@
             </div>
             <br>
             <div class="row justify-content-around" *ngFor="let skill of workerSkills">
-                <app-worker-skill [skill]="skill.SkillTitle" [description]="skill.Description" [rate]="skill.HourlyCharge" [skillId]="skill.SkillId"></app-worker-skill>
+                <app-worker-skill 
+                    [skill]="skill.SkillTitle" 
+                    [description]="skill.Description" 
+                    [rate]="skill.HourlyCharge" 
+                    [skillId]="skill.SkillId">
+                </app-worker-skill>
                 <hr>
             </div>
             <div class="row justify-content-around">

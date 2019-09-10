@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RequestcardComponent } from './requestcard.component';
+import { ReqeustCardComponent } from './reqeust-card.component';
 
-describe('RequestcardComponent', () => {
-  let component: RequestcardComponent;
-  let fixture: ComponentFixture<RequestcardComponent>;
+describe('ReqeustCardComponent', () => {
+  let component: ReqeustCardComponent;
+  let fixture: ComponentFixture<ReqeustCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RequestcardComponent ]
+      declarations: [ ReqeustCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RequestcardComponent);
+    fixture = TestBed.createComponent(ReqeustCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

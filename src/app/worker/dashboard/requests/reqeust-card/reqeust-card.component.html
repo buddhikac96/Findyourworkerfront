@@ -1,0 +1,33 @@
+<button class="btn btn-sm btn-primary"  (click)="frame.show()">View</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <mdb-card>
+                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    <a>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h4>
+                            <strong>There is a request for a {{request.skill}}</strong>
+                        </h4>
+                    </mdb-card-title>
+                    <mdb-card-text>
+                        <strong>
+                            {{request.firstname}} {{request.lastname}} from 
+                            {{request.baseLocation}} is looking for a 
+                            {{request.skill}} on {{request.date | date}} from
+                            <b> {{request.startTime | date:'shortTime' }} </b> to
+                            <b> {{request.endTime | date:'shortTime' }} </b>
+                        </strong>
+                    </mdb-card-text>
+                    <button class="btn btn-success mr-5" (click)="acceptRequest(requestId)" (click)="frame.hide()">Get this Job</button>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>

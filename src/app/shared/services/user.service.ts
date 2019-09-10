@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+import { ConfigService } from './../../../assets/config/config.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,15 +15,16 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private confService: ConfigService
   ) { }
 
   loginUser(username, password): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('http://localhost:3000/user/login', { UserEmail: username, Password: password });
+    return this.http.post<LoginResponse>(this.confService.baseUrl + '/user/login', { UserEmail: username, Password: password });
   }
 
   registerUser(username, password, mobile, type): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>('http://localhost:3000/user/register', {
+    return this.http.post<RegisterResponse>(this.confService.baseUrl + '/user/register', {
       UserEmail: username,
       Password: password,
       ContactNumber: mobile,
@@ -31,7 +34,7 @@ export class UserService {
 
   logout() {
     this.router.navigate(['']);
-    return this.http.post('http://localhost:3000/user/logout', {});
+    return this.http.post(this.confService.baseUrl + '/user/logout', {});
   }
 
   isLogged() {

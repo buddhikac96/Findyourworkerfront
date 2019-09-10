@@ -1,7 +1,9 @@
-import { ServerResponse } from './../models/response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
+
+import { ConfigService } from './../../../assets/config/config.service';
+import { ServerResponse } from './../models/response.model';
 
 @ Injectable({
   providedIn: 'root'
@@ -9,19 +11,20 @@ import { Observable } from '../../../../node_modules/rxjs';
 export class MapserviceService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private confService: ConfigService
   ) { }
 
 
   getNearbyWorkers(jobType, clientId, cordinate): Observable<ServerResponse> {
     return this.http.post<ServerResponse>(
-      'http://localhost:3000/booknow/booknow', {jobType, clientId, cordinate}
+      this.confService.baseUrl + '/booknow/booknow', {jobType, clientId, cordinate}
     );
   }
 
   sendUrgentRequest(jobTypeId, clientId, workers, location): Observable<ServerResponse> {
     return this.http.post<ServerResponse>(
-      'http://localhost:3000/booknow/sendUrgentRequest', {jobTypeId, clientId, workers, location}
+      this.confService.baseUrl + '/booknow/sendUrgentRequest', {jobTypeId, clientId, workers, location}
     );
   }
 }
