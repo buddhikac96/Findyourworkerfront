@@ -19,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapviewComponent } from './shared/components/mapview/mapview.component';
 import { ToastrModule } from 'ngx-toastr';
 
-
 @ NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterComponent,
     BooknowComponent,
     BooklaterComponent,
-    MapviewComponent,
+    MapviewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +46,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

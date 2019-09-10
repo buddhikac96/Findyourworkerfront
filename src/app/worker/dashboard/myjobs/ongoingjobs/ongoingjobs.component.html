@@ -1,0 +1,32 @@
+<hr>
+<h1>Ongoing Jobs</h1>
+<hr>
+
+<table class="table">
+    <thead class="black white-text">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">OrderId</th>
+            <th scope="col">Client</th>
+            <th scope="col">Skill</th>
+            <th scope="col">Location</th>
+            <th scope="col">Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Hourly charge</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders;  let i = index" [attr.data-index]="i">
+            <th scope="row">{{i}}</th>
+            <td>{{order.OrderId}}</td>
+            <td>{{order.FirstName}} {{order.LastName}}</td>
+            <td>{{order.SkillTitle | undefinedStrings}}</td>
+            <td>{{order.OrderLoaction | undefinedStrings}}</td>
+            <td>{{order.OrderDate | undefinedStrings}}</td>
+            <td>{{order.ExpectedStartTime | undefinedStrings}}</td>
+            <td>{{order.ExpectedEndTime | undefinedStrings}}</td>
+            <td>{{order.ExpectedPrice | undefinedStrings}}</td>
+        </tr>
+    </tbody>
+</table>

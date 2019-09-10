@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,9 @@ import { MyjobsComponent } from './dashboard/myjobs/myjobs.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { SkillComponent } from './dashboard/profile/skill/skill.component';
 import { ReqeustCardComponent } from './dashboard/requests/reqeust-card/reqeust-card.component';
+import { UpcomingjobsComponent } from './dashboard/myjobs/upcomingjobs/upcomingjobs.component';
+import { CompletedjobsComponent } from './dashboard/myjobs/completedjobs/completedjobs.component';
+import { OngoingjobsComponent } from './dashboard/myjobs/ongoingjobs/ongoingjobs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { ReqeustCardComponent } from './dashboard/requests/reqeust-card/reqeust-
     MyjobsComponent,
     ProfileComponent,
     SkillComponent,
-    ReqeustCardComponent
+    ReqeustCardComponent,
+    UpcomingjobsComponent,
+    CompletedjobsComponent,
+    OngoingjobsComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +36,8 @@ import { ReqeustCardComponent } from './dashboard/requests/reqeust-card/reqeust-
     NgxFloatButtonModule,
     FloatingActionMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ]
 })
 export class WorkerModule { }

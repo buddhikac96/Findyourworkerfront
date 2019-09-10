@@ -128,10 +128,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.addWorkerSkillSubscription.unsubscribe();
-    this.editWorkerProfileSubscription.unsubscribe();
-    this.getAllJobsSubscription.unsubscribe();
-    this.getAllLocationsSubscription.unsubscribe();
-    this.getProfileSubscription.unsubscribe();
+    if (this.addWorkerSkillSubscription) {
+      this.addWorkerSkillSubscription.unsubscribe();
+    }
+    if (this.editWorkerProfileSubscription) {
+      this.editWorkerProfileSubscription.unsubscribe();
+    }
+    if (this.getAllLocationsSubscription) {
+      this.getAllLocationsSubscription.unsubscribe();
+    }
+    if (this.getProfileSubscription) {
+      this.getProfileSubscription.unsubscribe();
+    }
   }
 }

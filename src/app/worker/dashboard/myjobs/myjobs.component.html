@@ -1,1 +1,17 @@
-<p>myjobs works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <ul class="nav justify-content-center grey lighten-4 py-4">
+            <li class="nav-item">
+                <a class="nav-link text-white btn btn-primary mr-3" (click)="navigateTo('upcoming')">Upcoming Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary text-white mr-3" (click)="navigateTo('completed')">Completed Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary mr-3 text-white" (click)="navigateTo('ongoing')">Ongoing Orders</a>
+            </li>
+        </ul>
+    </div>
+        <router-outlet></router-outlet>
+</div>
+

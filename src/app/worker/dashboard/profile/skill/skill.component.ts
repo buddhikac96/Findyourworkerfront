@@ -38,7 +38,9 @@ export class SkillComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.deleteWorkerSkillSubscription.unsubscribe();
+    if (this.deleteWorkerSkillSubscription) {
+      this.deleteWorkerSkillSubscription.unsubscribe();
+    }
   }
 
 }

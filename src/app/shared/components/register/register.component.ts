@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       form.value.username,
       form.value.password,
        form.value.contactNumber,
-       form.value.userType
+       form.value.userType,
       ).subscribe(
       result => {
         console.log(result);
