@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../services/user.service';
 import { RealTimeWorkerLocation, LocationPoint } from './../../models/locatoin.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MapserviceService } from '../../services/mapservice.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './mapview.component.html',
   styleUrls: ['./mapview.component.scss']
 })
-export class MapviewComponent implements OnInit {
+export class MapviewComponent implements OnInit, OnDestroy {
 
   jobTypeId: number;
   baseLocation: string;
@@ -26,6 +27,9 @@ export class MapviewComponent implements OnInit {
   isLogged: boolean;
 
   url = '../../../../assets/img/icon-labour.png';
+
+  private getNearbyWorkersSubscription: Subscription;
+  private sendUrgentRequestSubscription: Subscription;
 
   constructor(
     private mapService: MapserviceService,
@@ -63,7 +67,7 @@ export class MapviewComponent implements OnInit {
       this.jobTypeId = +params['jobType'];
       const clientId = this.userService.getUserId();
       const location = localStorage.getItem('location');
-      this.mapService.getNearbyWorkers(this.jobTypeId, clientId, location).subscribe(
+      this.getNearbyWorkersSubscription = this.mapService.getNearbyWorkers(this.jobTypeId, clientId, location).subscribe(
         res => {
           this.realTimeWorekrs = res.result.workers;
           this.lat = res.result.centerOfMap.latitude;
@@ -92,7 +96,12 @@ export class MapviewComponent implements OnInit {
     for (const worker of this.realTimeWorekrs) {
       availableWorkerIdList.push(worker.WorkerId);
     }
-    this.mapService.sendUrgentRequest(this.jobTypeId, this.clientId, availableWorkerIdList, location).subscribe(
+    this.sendUrgentRequestSubscription = this.mapService.sendUrgentRequest(
+      this.jobTypeId,
+      this.clientId,
+      availableWorkerIdList,
+      location
+    ).subscribe(
       res => {
        if (res.message === 'success') {
         this.toastr.success('Request sent Succesfully');
@@ -100,6 +109,11 @@ export class MapviewComponent implements OnInit {
        }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.getNearbyWorkersSubscription.unsubscribe();
+    this.sendUrgentRequestSubscription.unsubscribe();
   }
 
 }

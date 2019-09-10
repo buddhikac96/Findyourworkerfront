@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { SkillModel } from './../../models/skill.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../services/data.service';
 
 @ Component({
@@ -7,7 +8,7 @@ import { DataService } from '../../services/data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   jobs: SkillModel[];
   jobType: string;
@@ -20,12 +21,14 @@ export class HomeComponent implements OnInit {
   clientLat;
   clientLng;
 
+  private getAllJobsSubscription: Subscription;
+
 
 
   constructor(
     private dataservice: DataService
   ) {
-    this.dataservice.getAllJobs().subscribe(
+    this.getAllJobsSubscription = this.dataservice.getAllJobs().subscribe(
       res => {
         console.log(res.recordset);
         this.jobs = res.recordset;
@@ -51,6 +54,10 @@ export class HomeComponent implements OnInit {
     this.clientLat = coords.lat;
     this.clientLng = coords.lng;
     localStorage.setItem('location', location);
+  }
+
+  ngOnDestroy() {
+    this.getAllJobsSubscription.unsubscribe();
   }
 
 }

@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ConfirmPasswordValidator } from '../../validators/confirmpassword.validator';
 
@@ -10,9 +11,10 @@ import { ConfirmPasswordValidator } from '../../validators/confirmpassword.valid
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   form;
+  private registerUserSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +45,12 @@ export class RegisterComponent implements OnInit {
 
   registerSubmit(form) {
     console.log(form.value.username);
-    this.userService.registerUser(form.value.username, form.value.password, form.value.contactNumber, form.value.userType).subscribe(
+    this.registerUserSubscription = this.userService.registerUser(
+      form.value.username,
+      form.value.password,
+       form.value.contactNumber,
+       form.value.userType
+      ).subscribe(
       result => {
         console.log(result);
         if (result.status === 201) {
@@ -70,6 +77,10 @@ export class RegisterComponent implements OnInit {
 
   get contactNumber() {
     return this.form.get('contactNumber');
+  }
+
+  ngOnDestroy() {
+    this.registerUserSubscription.unsubscribe();
   }
 
 }

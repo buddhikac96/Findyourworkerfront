@@ -1,18 +1,24 @@
+import { Subscription } from 'rxjs';
 import { DataService } from './../../../../shared/services/data.service';
 import { WorkerService } from './../../../../shared/services/worker.service';
 import { RequestCard } from './../../../../shared/models/request.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-reqeust-card',
   templateUrl: './reqeust-card.component.html',
   styleUrls: ['./reqeust-card.component.scss']
 })
-export class ReqeustCardComponent implements OnInit {
+export class ReqeustCardComponent implements OnInit, OnDestroy {
 
   @Input() requestId: number;
   request: RequestCard = new RequestCard();
   skills = [];
+
+  private getRequestDetailsSubscription: Subscription;
+  private getAllJobsSubscription: Subscription;
+  private getClientDetailsByIdSubscription: Subscription;
+  private acceptRequestSubscription: Subscription;
 
   constructor(
     private workerService: WorkerService,
@@ -21,10 +27,10 @@ export class ReqeustCardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataService.getAllJobs().subscribe(
+    this.getAllJobsSubscription = this.dataService.getAllJobs().subscribe(
       response => {
         this.skills = response.recordset;
-        this.workerService.getRequestDetails(this.requestId).subscribe(
+        this.getRequestDetailsSubscription = this.workerService.getRequestDetails(this.requestId).subscribe(
           res => {
             console.log(res.recordset[0]);
             const req = res.recordset[0];
@@ -39,7 +45,7 @@ export class ReqeustCardComponent implements OnInit {
               }
             }
             // get client details for request
-            this.dataService.getClientDetailsById(this.request.ClientId).subscribe(
+            this.getClientDetailsByIdSubscription = this.dataService.getClientDetailsById(this.request.ClientId).subscribe(
               result => {
                 this.request.firstname = result.recordset[0].FirstName;
                 this.request.lastname = result.recordset[0].LastName;
@@ -53,11 +59,18 @@ export class ReqeustCardComponent implements OnInit {
   }
 
   acceptRequest(id) {
-    this.workerService.acceptRequest(id, localStorage.getItem('UserId')).subscribe(
+    this.acceptRequestSubscription = this.workerService.acceptRequest(id, localStorage.getItem('UserId')).subscribe(
       res => {
         this.workerService.workerRequestSectionRefresher.next(false);
         console.log(res);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.acceptRequestSubscription.unsubscribe();
+    this.getAllJobsSubscription.unsubscribe();
+    this.getClientDetailsByIdSubscription.unsubscribe();
+    this.getRequestDetailsSubscription.unsubscribe();
   }
 }

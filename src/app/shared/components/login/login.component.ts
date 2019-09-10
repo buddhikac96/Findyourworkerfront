@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @ Component({
@@ -9,9 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   form;
+  private loginUserSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
-    this.userService.loginUser(this.username.value, this.password.value).subscribe(
+    this.loginUserSubscription = this.userService.loginUser(this.username.value, this.password.value).subscribe(
       result => {
         if (result.status === 200 && result.message === 'Authorized') {
           this.toastr.success('Login Success');
@@ -57,6 +59,10 @@ export class LoginComponent implements OnInit {
 
   get username() {return this.form.get('username'); }
   get password() {return this.form.get('password'); }
+
+  ngOnDestroy() {
+    this.loginUserSubscription.unsubscribe();
+  }
 
 
 }

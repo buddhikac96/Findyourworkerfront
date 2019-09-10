@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { UserService } from './../../../shared/services/user.service';
 import { SkillModel } from './../../../shared/models/skill.model';
 import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { WorkerProfile, WorkerSkill } from './../../../shared/models/user.model';
 import { DataService } from './../../../shared/services/data.service';
@@ -12,7 +13,7 @@ import { WorkerService } from './../../../shared/services/worker.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   workerProfile: WorkerProfile = new WorkerProfile();
   workerSkills: WorkerSkill[] = [];
@@ -23,6 +24,12 @@ export class ProfileComponent implements OnInit {
   jobIdPassToBooking: number;
   locations: string[];
   editProfileForm;
+
+  private getProfileSubscription: Subscription;
+  private getAllJobsSubscription: Subscription;
+  private getAllLocationsSubscription: Subscription;
+  private addWorkerSkillSubscription: Subscription;
+  private editWorkerProfileSubscription: Subscription;
 
   constructor(
     private workerService: WorkerService,
@@ -49,7 +56,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     const userId = localStorage.getItem('UserId');
     this. userEmail = localStorage.getItem('sessionEmail');
-    this.workerService.getProfile(userId).subscribe(
+    this.getProfileSubscription = this.workerService.getProfile(userId).subscribe(
       res => {
         console.log(res.result);
         this.workerProfile = res.result.recordsets[0][0];
@@ -57,14 +64,14 @@ export class ProfileComponent implements OnInit {
       }
     );
 
-    this.dataService.getAllJobs().subscribe(
+    this.getAllJobsSubscription = this.dataService.getAllJobs().subscribe(
       res => {
         console.log(res);
         this.sysSkills = res.recordset;
       }
     );
 
-    this.dataService.getAllLocations().subscribe(
+    this.getAllLocationsSubscription = this.dataService.getAllLocations().subscribe(
       res => {
         console.log(res);
         this.locations = res.recordset;
@@ -87,7 +94,7 @@ export class ProfileComponent implements OnInit {
       SkillId: this.jobIdPassToBooking
     };
 
-    this.workerService.addWorkerSkill(id, skill).subscribe(
+    this.addWorkerSkillSubscription = this.workerService.addWorkerSkill(id, skill).subscribe(
       res => {
         console.log(res);
         this.workerSkills.push(newSkill);
@@ -112,11 +119,19 @@ export class ProfileComponent implements OnInit {
       phoneNumber: this.editProfileForm.value.phoneNumber,
       location: this.editProfileForm.value.location
     };
-    this.workerService.editWorkerProfile(userId, profileData).subscribe(
+    this.editWorkerProfileSubscription = this.workerService.editWorkerProfile(userId, profileData).subscribe(
       res => {
         console.log(res);
         this.ngOnInit();
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.addWorkerSkillSubscription.unsubscribe();
+    this.editWorkerProfileSubscription.unsubscribe();
+    this.getAllJobsSubscription.unsubscribe();
+    this.getAllLocationsSubscription.unsubscribe();
+    this.getProfileSubscription.unsubscribe();
   }
 }

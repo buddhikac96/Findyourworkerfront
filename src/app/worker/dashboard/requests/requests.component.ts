@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { UserService } from './../../../shared/services/user.service';
@@ -13,6 +14,8 @@ export class RequestsComponent implements OnInit, OnDestroy {
   myRequets: any[];
   sectionRefresher = true;
 
+  private getAllRequestsSubscription: Subscription;
+
   constructor(
     private worrkerService: WorkerService,
     private userService: UserService
@@ -27,7 +30,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
     );
     const userId = this.userService.getUserId();
     // get all requests by workerId
-    this.worrkerService.getAllRequests(userId).subscribe(
+    this.getAllRequestsSubscription = this.worrkerService.getAllRequests(userId).subscribe(
       res => {
         console.log(res);
         this.myRequets = res.result[0];
@@ -37,7 +40,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.worrkerService.workerRequestSectionRefresher.unsubscribe();
-    // this.worrkerService.getAllRequests(userId).
+    this.getAllRequestsSubscription.unsubscribe();
   }
 
 }
