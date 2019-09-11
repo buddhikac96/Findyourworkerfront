@@ -1,8 +1,9 @@
 import { Subscription } from 'rxjs';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+
 import { DataService } from './../../../../shared/services/data.service';
 import { WorkerService } from './../../../../shared/services/worker.service';
 import { RequestCard } from './../../../../shared/models/request.model';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-reqeust-card',
@@ -14,6 +15,9 @@ export class ReqeustCardComponent implements OnInit, OnDestroy {
   @Input() requestId: number;
   request: RequestCard = new RequestCard();
   skills = [];
+
+  orderLat: string;
+  orderLng: string;
 
   private getRequestDetailsSubscription: Subscription;
   private getAllJobsSubscription: Subscription;
@@ -38,6 +42,11 @@ export class ReqeustCardComponent implements OnInit, OnDestroy {
             this.request.startTime = res.recordset[0].StartTime;
             this.request.endTime = res.recordset[0].ExpectedEndTime;
             this.request.date = res.recordset[0].OrderDate;
+            this.request.location = res.recordset[0].OrderLocation;
+            const locationArr = this.request.location.split(',');
+            this.orderLat = locationArr[0];
+            this.orderLng = locationArr[1];
+            console.log(this.orderLng);
             for (const skill of this.skills) {
               // console.log(request.SkillId);
               if (skill.SkillId === req.SkillId) {
@@ -68,9 +77,17 @@ export class ReqeustCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.acceptRequestSubscription.unsubscribe();
-    this.getAllJobsSubscription.unsubscribe();
-    this.getClientDetailsByIdSubscription.unsubscribe();
-    this.getRequestDetailsSubscription.unsubscribe();
+    if (this.acceptRequestSubscription) {
+      this.acceptRequestSubscription.unsubscribe();
+    }
+    if (this.getAllJobsSubscription) {
+      this.getAllJobsSubscription.unsubscribe();
+    }
+    if (this.getClientDetailsByIdSubscription) {
+      this.getClientDetailsByIdSubscription.unsubscribe();
+    }
+    if (this.getRequestDetailsSubscription) {
+      this.getRequestDetailsSubscription.unsubscribe();
+    }
   }
 }

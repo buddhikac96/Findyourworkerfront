@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-primary"  (click)="frame.show()">View</button>
+<button class="btn btn-sm btn-primary" (click)="frame.show()">View</button>
 
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
@@ -18,15 +18,26 @@
                     </mdb-card-title>
                     <mdb-card-text>
                         <strong>
-                            {{request.firstname}} {{request.lastname}} from 
-                            {{request.baseLocation}} is looking for a 
-                            {{request.skill}} on {{request.date | date}} from
+                            {{request.firstname}} {{request.lastname}} from {{request.baseLocation}} is looking for a {{request.skill}} on {{request.date
+                            | date}} from
                             <b> {{request.startTime | date:'shortTime' }} </b> to
                             <b> {{request.endTime | date:'shortTime' }} </b>
                         </strong>
                     </mdb-card-text>
-                    <button class="btn btn-success mr-5" (click)="acceptRequest(requestId)" (click)="frame.hide()">Get this Job</button>
+
                 </mdb-card-body>
+            </mdb-card>
+
+            <mdb-card>
+                <mdb-card-body>
+                    <agm-map [latitude]="7.8731" [longitude]="80.7718" class="agmMap">
+                        <agm-marker [latitude]="orderLat" [longitude]="orderLng"></agm-marker>
+                    </agm-map>
+                    <div class="row mt-2 justify-content-around">
+                        <button class="btn btn-success" (click)="acceptRequest(requestId)" (click)="frame.hide()">Get this Job</button>
+                    </div>
+                </mdb-card-body>
+
             </mdb-card>
         </div>
     </div>

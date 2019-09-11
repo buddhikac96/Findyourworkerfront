@@ -80,7 +80,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.registerUserSubscription.unsubscribe();
+    if (this.registerUserSubscription) {
+      this.registerUserSubscription.unsubscribe();
+    }
   }
 
 }

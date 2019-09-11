@@ -7,6 +7,7 @@ export class RequestCard {
     startTime: string;
     endTime: string;
     date: string;
+    location: string;
 }
 
 /* constructor(skill, firstname, lastname, baseLocation, clientId, startTime, endTime, date) {

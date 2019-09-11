@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { PipesModule } from './../pipes/pipes.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
@@ -37,7 +38,10 @@ import { OngoingjobsComponent } from './dashboard/myjobs/ongoingjobs/ongoingjobs
     FloatingActionMenuModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB8lgLyWZZBgmCV6EAVADrIanxU03jXfWc'
+    }),
   ]
 })
 export class WorkerModule { }

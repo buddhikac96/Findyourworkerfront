@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { OrderService } from './../../../../shared/services/order.service';
 
@@ -7,9 +8,10 @@ import { OrderService } from './../../../../shared/services/order.service';
   templateUrl: './completedjobs.component.html',
   styleUrls: ['./completedjobs.component.scss']
 })
-export class CompletedjobsComponent implements OnInit {
+export class CompletedjobsComponent implements OnInit, OnDestroy {
 
   orders;
+  private getCompletedJobsSub: Subscription;
 
   constructor(
     private orderService: OrderService
@@ -17,12 +19,18 @@ export class CompletedjobsComponent implements OnInit {
 
   ngOnInit() {
     const id = localStorage.getItem('UserId');
-    this.orderService.getCompletedJobs(id).subscribe(
+    this.getCompletedJobsSub = this.orderService.getCompletedJobs(id).subscribe(
       res => {
         console.log(res);
         this.orders = res.result[0];
         console.log(this.orders);
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.getCompletedJobsSub) {
+      this.getCompletedJobsSub.unsubscribe();
+    }
   }
 }

@@ -39,8 +39,12 @@ export class RequestsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.worrkerService.workerRequestSectionRefresher.unsubscribe();
-    this.getAllRequestsSubscription.unsubscribe();
+    if (this.worrkerService.workerRequestSectionRefresher) {
+      this.worrkerService.workerRequestSectionRefresher.unsubscribe();
+    }
+    if (this.getAllRequestsSubscription) {
+      this.getAllRequestsSubscription.unsubscribe();
+    }
   }
 
 }

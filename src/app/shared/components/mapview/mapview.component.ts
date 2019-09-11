@@ -73,7 +73,7 @@ export class MapviewComponent implements OnInit, OnDestroy {
           this.lat = res.result.centerOfMap.latitude;
           this.lng = res.result.centerOfMap.longitude;
           console.log(res);
-          localStorage.removeItem('location');
+          // localStorage.removeItem('location');
           if (res.status === 201) {
             this.toastr.success(res.message);
           } else {
@@ -92,7 +92,7 @@ export class MapviewComponent implements OnInit, OnDestroy {
 
   sendRequest() {
     const availableWorkerIdList = [];
-    const location = '6.7881,79.8913';
+    const location = localStorage.getItem('location');
     for (const worker of this.realTimeWorekrs) {
       availableWorkerIdList.push(worker.WorkerId);
     }
@@ -112,8 +112,12 @@ export class MapviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.getNearbyWorkersSubscription.unsubscribe();
-    this.sendUrgentRequestSubscription.unsubscribe();
+    if (this.getNearbyWorkersSubscription) {
+      this.getNearbyWorkersSubscription.unsubscribe();
+    }
+    if (this.sendUrgentRequestSubscription) {
+      this.sendUrgentRequestSubscription.unsubscribe();
+    }
   }
 
 }
